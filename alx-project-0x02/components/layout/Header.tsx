@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-blue-500 text-white p-4">
+    <header className="bg-red-500 text-white p-4">
       <nav className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl font-bold">My App</h1>
+        <h1 className="text-xl font-bold">NextJs App</h1>
         <ul className="flex space-x-6">
           <li>
             <Link href="/home" className="hover:underline">

@@ -1,20 +1,46 @@
-import React from 'react'
-import Card from '@/components/common/Card'
+import React, { useState } from "react";
+import Head from "next/head";
+import Card from "@/components/common/Card";
+import PostModal from "@/components/common/PostModal";
+import Header from "@/components/layout/Header";
 
+export default function HomePage() {
+  const [posts, setPosts] = useState([
+    { title: "Card 1", content: "This is the content for Card 1." },
+    { title: "Card 2", content: "This is the content for Card 2." },
+  ]);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-function home() {
+  const handleAddPost = (title: string, content: string) => {
+    setPosts([...posts, { title, content }]);
+  };
+
   return (
-    <div className='w-full h-full'>
-        <h1>Home</h1>
-        <div className="flex justify-between items-center w-1/2 mx-auto">
-          <Card title="Home 1" content='this is home number 1'/>  
-          <Card title="Home 2" content='this is home number 2'/>  
-          <Card title="Home 3" content='this is home number 3'/>  
-          <Card title="Home 4" content='this is home number 4'/>  
-        </div>
-        
-    </div>
-  )
-}
+    <div>
+      <Head>
+        <title>Home Page</title>
+      </Head>
+      <Header />
 
-export default home
+      <main className="p-6 flex flex-col">
+        <h1 className="text-3xl font-bold mb-6">Welcome to the Home Page</h1>
+        <button
+          className="mb-6 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 self-start"
+          onClick={() => setModalOpen(true)}
+        >
+          Add New Post
+        </button>
+        <div className="flex gap-5">
+          {posts.map((post, index) => (
+            <Card key={index} title={post.title} content={post.content} />
+          ))}
+        </div>
+        <PostModal
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          onSave={handleAddPost}
+        />
+      </main>
+    </div>
+  );
+}
