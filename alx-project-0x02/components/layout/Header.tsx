@@ -1,9 +1,8 @@
 import React from 'react'
 import Link  from 'next/link'
 
-type Props = {}
 
-function Header({}: Props) {
+function Header() {
   return (
     <div>
         <nav className="bg-gray-800">
