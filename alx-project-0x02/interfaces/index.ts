@@ -9,3 +9,8 @@ export interface ButtonProps{
     size?: "small" | "medium" | "large";
     className?: string
 }
+export interface PostProps{
+    title: string;
+    content: string;
+    userId: number;
+}
